@@ -14,6 +14,10 @@
     --text-secondary: #b0c4de;
     --success: #00d4ff;
     --danger: #ff6b6b;
+    
+    /* Cores das peças de dominó */
+    --domino-bg: linear-gradient(135deg, #e6dacb 0%, #f4ebd9 100%);
+    --domino-border: #2a2416;
 }
 
 body {
@@ -76,15 +80,16 @@ body {
 
 .score-board {
     flex: 1;
-    background: rgba(30, 50, 80, 0.6);
+    background: rgba(30, 50, 80, 0.4);
     border-radius: 16px;
     padding: 12px 16px;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .score-label {
@@ -143,16 +148,17 @@ body {
     color: var(--text-primary);
 }
 
-/* Mesa */
+/* Mesa de Jogo */
 .mesa-container {
-    flex: 0.8;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 12px;
-    background: rgba(255, 153, 102, 0.3);
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 153, 102, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .mesa {
@@ -160,62 +166,77 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+    padding: 10px;
 }
 
+/* CONCERTO DO DOMINÓ: Proporções Perfeitas (1:2) */
 .domino {
-    width: 48px;
-    height: 96px;
-    background: linear-gradient(135deg, #c4b5a0 0%, #d4c5b0 100%);
-    border: 3px solid #333;
-    border-radius: 8px;
+    width: 44px;
+    height: 88px;
+    background: var(--domino-bg);
+    border: 2px solid var(--domino-border);
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    padding: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    justify-content: space-between;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     user-select: none;
+    position: relative;
 }
 
 .domino:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 212, 255, 0.3);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
 }
 
 .domino.selected {
     border-color: var(--primary);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
 }
 
 .domino.rotated {
-    width: 96px;
-    height: 48px;
+    width: 88px;
+    height: 44px;
+    flex-direction: row;
 }
 
-.domino-pip {
-    width: 8px;
-    height: 8px;
-    background: #333;
-    border-radius: 2px;
-}
-
+/* Grid Realista 3x3 para posicionamento correto dos Pips */
 .domino-half {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     width: 100%;
+    height: 50%;
+    padding: 4px;
     align-items: center;
-    justify-content: center;
-    height: 32px;
+    justify-items: center;
+    box-sizing: border-box;
 }
 
-/* Boneyard */
+/* Linha central divisória discreta */
+.domino:not(.rotated) .domino-half:first-child {
+    border-bottom: 1px solid rgba(42, 36, 22, 0.2);
+}
+.domino.rotated .domino-half:first-child {
+    border-right: 1px solid rgba(42, 36, 22, 0.2);
+}
+
+/* Bolinhas do Dominó */
+.domino-pip {
+    width: 6px;
+    height: 6px;
+    background: var(--domino-border);
+    border-radius: 50%;
+}
+
+/* Boneyard (Reserva) */
 .boneyard-container {
     flex: 0.6;
     display: flex;
@@ -225,85 +246,87 @@ body {
 }
 
 .boneyard {
-    background: rgba(101, 67, 33, 0.8);
-    border: 4px solid #8b6f47;
+    background: rgba(45, 30, 15, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    padding: 20px;
+    padding: 16px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .boneyard-title {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 3px;
     color: var(--text-primary);
     text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
 }
 
 .boneyard-grid {
     display: grid;
-    grid-template-columns: repeat(5, 32px);
-    gap: 8px;
+    grid-template-columns: repeat(7, 30px);
+    gap: 6px;
 }
 
 .boneyard-slot {
-    width: 32px;
-    height: 48px;
-    background: rgba(196, 181, 160, 0.4);
-    border: 2px dashed rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
     border-radius: 6px;
 }
 
 .boneyard-slot.filled {
-    background: linear-gradient(135deg, #c4b5a0 0%, #d4c5b0 100%);
-    border: 2px solid #333;
+    background: var(--domino-bg);
+    border: 1.5px solid var(--domino-border);
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Mão do Jogador */
 .hand-container {
-    flex: 0.7;
+    flex: 0.8;
     display: flex;
     flex-direction: column;
-    padding: 12px;
-    gap: 12px;
-    background: rgba(255, 102, 91, 0.4);
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
 }
 
 .hand {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     justify-content: center;
     align-items: flex-end;
     flex-wrap: wrap;
     overflow-y: auto;
-    max-height: 120px;
-}
-
-.hand .domino {
-    transition: all 0.3s ease;
+    max-height: 140px;
+    padding: 4px;
 }
 
 .hand .domino:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px) scale(1.05);
 }
 
 .hand .domino.playable {
     border-color: var(--success);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
 }
 
 .hand .domino.not-playable {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    transform: none;
 }
 
+/* Painel de Ações */
 .actions {
     display: flex;
     gap: 12px;
@@ -311,33 +334,33 @@ body {
 }
 
 .action-btn {
-    padding: 10px 20px;
+    padding: 10px 24px;
     border-radius: 24px;
-    border: none;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.action-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
+.action-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
-.action-btn:active {
+.action-btn:active:not(:disabled) {
     transform: scale(0.95);
 }
 
 .action-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.3;
     cursor: not-allowed;
 }
 
@@ -351,11 +374,12 @@ body {
 .status-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    backdrop-filter: blur(8px);
 }
 
 .status-modal.show {
@@ -363,14 +387,14 @@ body {
 }
 
 .status-content {
-    background: linear-gradient(135deg, var(--dark-surface) 0%, #1a2950 100%);
-    border: 2px solid rgba(0, 212, 255, 0.3);
+    background: rgba(26, 31, 58, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 32px;
     text-align: center;
     max-width: 300px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .status-title {
@@ -407,10 +431,6 @@ body {
     box-shadow: 0 4px 16px rgba(0, 212, 255, 0.4);
 }
 
-.status-btn:active {
-    transform: translateY(0);
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
@@ -427,11 +447,7 @@ body {
     border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 212, 255, 0.5);
-}
-
-/* Responsive */
+/* CONCERTO RESPONSIVO MOBILE (Ajuste Fino Milimétrico) */
 @media (max-width: 768px) {
     .score-board {
         padding: 10px 12px;
@@ -445,23 +461,35 @@ body {
         font-size: 20px;
     }
 
+    .boneyard-grid {
+        grid-template-columns: repeat(6, 30px);
+    }
+
+    /* Aplica perfeitamente a escala mobile mantendo a proporção 1:2 */
     .domino {
-        width: 40px;
-        height: 80px;
+        width: 36px;
+        height: 72px;
+        border-width: 1.5px;
     }
 
     .domino.rotated {
-        width: 80px;
-        height: 40px;
-    }
-
-    .boneyard-grid {
-        grid-template-columns: repeat(4, 28px);
+        width: 72px;
+        height: 36px;
     }
 
     .hand .domino {
-        width: 35px;
-        height: 70px;
+        width: 36px;
+        height: 72px;
     }
-  }
-  
+
+    .domino-pip {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .domino-half {
+        padding: 2px;
+        gap: 1px;
+    }
+    }
+    
