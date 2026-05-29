@@ -1,0 +1,13 @@
+# Arquivos de sistema e lixo eletrônico locais
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs de erro do sistema
+*.log
+npm-debug.log*
+
+# Pastas de dependências locais
+node_modules/
+dist/
+
