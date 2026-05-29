@@ -159,6 +159,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
+    overflow: hidden;
 }
 
 .mesa {
@@ -173,7 +174,7 @@ body {
     padding: 10px;
 }
 
-/* CONCERTO DO DOMINÓ: Proporções Perfeitas (1:2) */
+/* Dominó: Proporções Perfeitas (1:2) */
 .domino {
     width: 44px;
     height: 88px;
@@ -242,18 +243,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 12px;
 }
 
 .boneyard {
     background: rgba(45, 30, 15, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    padding: 16px 24px;
+    padding: 14px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     backdrop-filter: blur(25px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
@@ -288,13 +289,13 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Mão do Jogador */
+/* Mão do Jogador - Protegida contra encolhimento */
 .hand-container {
-    flex: 0.8;
+    flex-shrink: 0; /* Garante que nunca suma ou seja cortada */
     display: flex;
     flex-direction: column;
     padding: 16px;
-    gap: 16px;
+    gap: 12px;
     background: rgba(255, 255, 255, 0.05);
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
@@ -307,7 +308,7 @@ body {
     align-items: flex-end;
     flex-wrap: wrap;
     overflow-y: auto;
-    max-height: 140px;
+    max-height: 120px;
     padding: 4px;
 }
 
@@ -447,25 +448,45 @@ body {
     border-radius: 10px;
 }
 
-/* CONCERTO RESPONSIVO MOBILE (Ajuste Fino Milimétrico) */
+/* AJUSTE MOBILE COMPLETO (Anti-Corte) */
 @media (max-width: 768px) {
+    .header {
+        padding: 8px 12px;
+    }
+
     .score-board {
-        padding: 10px 12px;
+        padding: 8px 12px;
     }
 
     .score-goal {
-        font-size: 24px;
-    }
-
-    .score-number {
         font-size: 20px;
     }
 
-    .boneyard-grid {
-        grid-template-columns: repeat(6, 30px);
+    .score-number {
+        font-size: 18px;
     }
 
-    /* Aplica perfeitamente a escala mobile mantendo a proporção 1:2 */
+    .boneyard-container {
+        padding: 6px;
+    }
+
+    .boneyard {
+        padding: 10px 14px;
+        gap: 6px;
+    }
+
+    /* Redução milimétrica da reserva para caber na tela */
+    .boneyard-grid {
+        grid-template-columns: repeat(7, 24px);
+        gap: 4px;
+    }
+
+    .boneyard-slot {
+        width: 24px;
+        height: 36px;
+    }
+
+    /* Peças perfeitas em 36x72px */
     .domino {
         width: 36px;
         height: 72px;
@@ -475,6 +496,16 @@ body {
     .domino.rotated {
         width: 72px;
         height: 36px;
+    }
+
+    .hand-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .hand {
+        max-height: 85px;
+        gap: 6px;
     }
 
     .hand .domino {
@@ -489,7 +520,10 @@ body {
     
     .domino-half {
         padding: 2px;
-        gap: 1px;
     }
+
+    .action-btn {
+        padding: 8px 18px;
+        font-size: 12px;
     }
-    
+}
