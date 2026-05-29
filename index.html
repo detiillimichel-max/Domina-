@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo de Dominó - PWA">
+    <meta name="theme-color" content="#00d4ff">
+    <title>Jogo de Dominó</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%2300d4ff' width='192' height='192'/><rect fill='%23001a2e' x='20' y='50' width='30' height='60' rx='4'/><circle cx='30' cy='65' r='3' fill='%23fff'/><circle cx='30' cy='85' r='3' fill='%23fff'/><rect fill='%23001a2e' x='60' y='50' width='30' height='60' rx='4'/><rect fill='%23001a2e' x='100' y='50' width='30' height='60' rx='4'/><rect fill='%23001a2e' x='140' y='50' width='30' height='60' rx='4'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <button class="nav-btn prev-btn" id="prevBtn" aria-label="Rodada anterior">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            
+            <div class="score-board">
+                <div class="score-label">MÉDIO</div>
+                <div class="score-values">
+                    <div class="score-item">
+                        <span class="score-label-mini">Você</span>
+                        <span class="score-number" id="playerScore">0</span>
+                    </div>
+                    <div class="score-center">
+                        <span class="score-objective">OBJETIVO</span>
+                        <span class="score-goal" id="goalScore">250</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label-mini">IA</span>
+                        <span class="score-number" id="aiScore">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="nav-btn next-btn" id="nextBtn" aria-label="Próxima rodada">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mesa -->
+        <div class="mesa-container">
+            <div class="mesa" id="mesa"></div>
+        </div>
+
+        <!-- Boneyard -->
+        <div class="boneyard-container">
+            <div class="boneyard">
+                <div class="boneyard-title">BONEYARD</div>
+                <div class="boneyard-grid" id="boneyardGrid"></div>
+            </div>
+        </div>
+
+        <!-- Mão do jogador -->
+        <div class="hand-container">
+            <div class="hand" id="playerHand"></div>
+            <div class="actions">
+                <button class="action-btn draw-btn" id="drawBtn" aria-label="Puxar dominó">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                    </svg>
+                    Puxar
+                </button>
+                <button class="action-btn pass-btn" id="passBtn" aria-label="Passar rodada">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 4.5C3 3.67 3.67 3 4.5 3h15c.83 0 1.5.67 1.5 1.5v15c0 .83-.67 1.5-1.5 1.5h-15c-.83 0-1.5-.67-1.5-1.5V4.5zm2 0v15h15v-15H5z"/>
+                    </svg>
+                    Passar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div class="status-modal" id="statusModal">
+        <div class="status-content">
+            <div class="status-title" id="statusTitle">Rodada Iniciada</div>
+            <div class="status-message" id="statusMessage"></div>
+            <button class="status-btn" id="statusBtn">Próxima Rodada</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
