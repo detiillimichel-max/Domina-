@@ -1,170 +1,210 @@
-===============================================
-🎮 JOGO DE DOMINÓ PWA - SETUP RÁPIDO
-===============================================
+# 🎮 Jogo de Dominó - PWA
 
-📁 ESTRUTURA DE ARQUIVOS PRONTA:
-- index.html      (HTML principal)
-- style.css       (Estilos CSS3 + Glassmorphism)
-- app.js          (Lógica JavaScript ES6+)
-- manifest.json   (PWA Manifest com ícones SVG)
-- sw.js           (Service Worker offline)
-- package.json    (Scripts úteis)
-- README.md       (Documentação completa)
-- .gitignore      (Git ignore rules)
+Um jogo interativo de dominó desenvolvido em **HTML5 + CSS3 + Vanilla JavaScript** com design moderno glassmorphism, pronto para ser instalado como PWA (Progressive Web App).
 
-===============================================
-🚀 SETUP NO GITHUB PAGES
-===============================================
+## 🎯 Características
 
-1. CRIAR REPOSITÓRIO:
-   $ mkdir meu-domino-game
-   $ cd meu-domino-game
-   $ git init
+✨ **Interface Moderna**
+- Design glassmorphism com gradientes cyan e coral
+- Tipografia DM Sans
+- Responsivo para mobile e desktop
+- Animações suaves
 
-2. COPIAR ARQUIVOS:
-   (Copie todos os arquivos deste pacote para a pasta)
+🎮 **Gameplay Completo**
+- Jogo de dominó com regras clássicas
+- IA inteligente
+- Sistema de pontuação por rodadas
+- Objetivo de 250 pontos
+- Boneyard (peças não distribuídas)
+- Histórico de moves
 
-3. PRIMEIRO COMMIT:
-   $ git add .
-   $ git commit -m "Initial commit: Dominó Game PWA"
-   $ git remote add origin https://github.com/SEU-USUARIO/domino-game.git
-   $ git branch -M main
-   $ git push -u origin main
+📱 **PWA Ready**
+- Instalável como app nativo
+- Funciona offline
+- Service Worker para cache
+- Manifest com ícones SVG
+- Suporte a push notifications
 
-4. CRIAR BRANCH gh-pages:
-   $ git checkout -b gh-pages
-   $ git push origin gh-pages
+## 📁 Estrutura de Arquivos
 
-5. CONFIGURAR GITHUB:
-   ✓ Acesse: https://github.com/SEU-USUARIO/domino-game
-   ✓ Settings → Pages
-   ✓ Source: Deploy from a branch
-   ✓ Branch: gh-pages / (root)
-   ✓ Save
+```
+domino-game/
+├── index.html       # HTML principal
+├── style.css        # Estilos (CSS3 com variáveis)
+├── app.js           # Lógica do jogo (classe DominoGame)
+├── manifest.json    # PWA manifest
+├── sw.js            # Service Worker
+└── README.md        # Este arquivo
+```
 
-6. ACESSAR JOGO:
-   https://seu-usuario.github.io/domino-game/
+## 🚀 Deploy no GitHub Pages
 
-===============================================
-🛠️ DESENVOLVIMENTO LOCAL
-===============================================
+### 1️⃣ Clonar ou criar seu repositório
 
-OPÇÃO 1 - Python:
-   $ python -m http.server 8000
-   Acesse: http://localhost:8000/
+```bash
+# Criar novo repo
+git init meu-domino-game
+cd meu-domino-game
 
-OPÇÃO 2 - Node:
-   $ npx http-server
-   Acesse: http://localhost:8080/
+# Ou clonar
+git clone https://github.com/seu-usuario/domino-game.git
+cd domino-game
+```
 
-OPÇÃO 3 - Live Server (VSCode):
-   ✓ Instale extensão "Live Server"
-   ✓ Right-click em index.html
-   ✓ "Open with Live Server"
+### 2️⃣ Adicionar os arquivos
 
-===============================================
-📱 INSTALAR COMO APP
-===============================================
+Copie todos os arquivos da pasta `domino-game/` para a raiz do seu repositório:
 
-iOS (Safari):
-   1. Abra em Safari
-   2. Compartilhar → Adicionar à Tela de Início
-   3. Instala como app nativo
+```
+.
+├── index.html
+├── style.css
+├── app.js
+├── manifest.json
+├── sw.js
+└── README.md
+```
 
-Android (Chrome):
-   1. Abra em Chrome
-   2. Menu → Instalar app
-   3. Ou clique no botão de install na URL bar
+### 3️⃣ Criar branch `gh-pages`
 
-===============================================
-🎨 CUSTOMIZAR
-===============================================
+```bash
+git add .
+git commit -m "Initial commit: Dominó Game PWA"
+git branch gh-pages
+git checkout gh-pages
+git push origin gh-pages
+```
 
-CORES (style.css):
-   --primary: #00d4ff;    (Cyan)
-   --accent: #ff7a5c;     (Coral)
-   --dark-bg: #0a0e27;    (Dark)
+### 4️⃣ Configurar no GitHub
 
-OBJETIVO (app.js):
-   this.gameGoal = 250;
+1. Acesse **Settings** → **Pages**
+2. Source: `Deploy from a branch`
+3. Branch: `gh-pages`
+4. Folder: `/ (root)`
+5. Save
 
-FONTES:
-   DM Sans (Google Fonts - já incluso)
+Seu jogo estará disponível em:
+```
+https://seu-usuario.github.io/domino-game/
+```
 
-===============================================
-✅ CHECKLIST ANTES DE DEPLOY
-===============================================
+## 🛠️ Desenvolvimento Local
 
-   ☐ Arquivos: index.html, style.css, app.js, manifest.json, sw.js
-   ☐ Executar localmente (sem erros no console)
-   ☐ Service Worker registrado (DevTools → Application)
-   ☐ Instalar como PWA funciona
-   ☐ Funciona offline
-   ☐ URLs corretas em manifest.json
-   ☐ Commit no GitHub
+### Servir com Python
+```bash
+# Python 3
+python -m http.server 8000
 
-===============================================
-🐛 TROUBLESHOOTING
-===============================================
+# Python 2
+python -m SimpleHTTPServer 8000
+```
 
-SW não funciona?
-   → Abra DevTools (F12) → Application → Service Workers
-   → Verifique se está em HTTPS ou localhost
-   → Clear site data se necessário
+Acesse: `http://localhost:8000/domino-game/`
 
-Manifest não aparece?
-   → Verifique path em index.html
-   → Inspecione no DevTools → Application → Manifest
+### Servir com Node.js
+```bash
+npx http-server
+```
 
-CSS não carrega?
-   → Hard refresh: Ctrl+Shift+R
-   → Limpar cache do navegador
+### Servir com Live Server (VSCode)
+1. Instale a extensão "Live Server"
+2. Right-click em `index.html`
+3. "Open with Live Server"
 
-JS erros?
-   → Abra Console (F12)
-   → Procure por red messages
-   → Verifique paths de imports
+## 📋 Como Jogar
 
-===============================================
-📊 PERFORMANCE
-===============================================
+1. **Seu turno**: Clique em um dominó verde (jogável)
+2. **Sem jogada**: Clique em "Puxar" ou clique no Boneyard
+3. **Passar**: Clique em "Passar" (aparece quando sem jogadas)
+4. **IA**: Joga automaticamente após seu move
+5. **Objetivo**: Atingir 250 pontos
 
-Tamanho Total: ~35KB (todos os arquivos)
-Load Time: <1s em 4G
-Offline: 100% funcional sem internet
-Lighthouse Score: 90+ (PWA)
+### Regras
+- Dominó clássico com 28 peças (0-0 até 6-6)
+- Encaixe por pips iguais nas extremidades
+- Mão inicial: 7 dominós para cada jogador
+- Quem acaba primeiro marca os pontos da mão oposta
+- Ganha quem atingir 250 pontos
 
-===============================================
-🎮 GAMEPLAY
-===============================================
+## 🎨 Customização
 
-1. Clique em dominó VERDE para jogar
-2. Sem jogada? Clique PUXAR ou no Boneyard
-3. Clique PASSAR quando não conseguir jogar
-4. IA joga automaticamente
-5. Objetivo: 250 pontos
-6. Ganha quem atingir o objetivo primeiro
+### Cores
+Edite as variáveis CSS em `style.css`:
 
-===============================================
-📚 LINKS ÚTEIS
-===============================================
+```css
+:root {
+    --primary: #00d4ff;      /* Cyan */
+    --accent: #ff7a5c;        /* Coral */
+    --dark-bg: #0a0e27;       /* Dark blue */
+    /* ... */
+}
+```
 
-GitHub Pages Docs:
-   https://pages.github.com/
+### Objetivo de Pontos
+Em `app.js`, na classe `DominoGame`:
 
-PWA Docs:
-   https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/
+```javascript
+this.gameGoal = 250;  // Alterar para seu valor
+```
 
-Service Workers:
-   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+### IA
+Altere o método `selectAIMove()` em `app.js` para implementar estratégias diferentes.
 
-Manifest Spec:
-   https://www.w3.org/TR/appmanifest/
+## 📱 Instalar no Celular
 
-===============================================
-🎉 PRONTO PARA JOGAR!
+### iOS
+1. Abra em Safari
+2. Toque no ícone de compartilhamento
+3. "Adicionar à Tela de Início"
 
-Dúvidas? Verifique o README.md completo.
+### Android
+1. Abra em Chrome
+2. Menu → "Instalar app"
+3. Ou procure o botão de install na URL bar
 
-Bom jogo! 🎮✨
-===============================================
+## 🔧 Requisitos
+
+- Browser moderno com suporte a:
+  - ES6+ (Classes, Arrow Functions)
+  - CSS Grid e Flexbox
+  - Service Workers
+  - Local Storage (opcional)
+
+## ⚡ Performance
+
+- **Tamanho total**: ~35KB (HTML + CSS + JS)
+- **Load time**: < 1s em 4G
+- **Offline**: Totalmente funcional sem internet
+
+## 🐛 Troubleshooting
+
+### Service Worker não registra
+- Abra DevTools → Application → Service Workers
+- Verifique se está em HTTPS (ou localhost)
+
+### Manifest não carrega
+- Verifique o path em `index.html`: `<link rel="manifest" href="manifest.json">`
+- Confirm MIME type: `application/manifest+json`
+
+### Estilos não aparecem
+- Clear cache do navegador
+- Ctrl+Shift+R (hard refresh)
+
+## 📄 Licença
+
+MIT License - Sinta-se livre para usar, modificar e distribuir!
+
+## 🤝 Contribuições
+
+Sugestões de melhorias:
+- [ ] Multiplayer online
+- [ ] Diferentes níveis de dificuldade IA
+- [ ] Temas customizáveis
+- [ ] Leaderboard local
+- [ ] Estatísticas de jogo
+
+---
+
+**Desenvolvido com ❤️ em HTML5, CSS3 e JavaScript puro**
+
+Divirta-se jogando! 🎮✨
