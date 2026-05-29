@@ -1,0 +1,23 @@
+{
+  "name": "domina-pwa",
+  "version": "1.0.0",
+  "description": "DOMINA - Jogo de Dominó PWA com IA e design moderno",
+  "main": "app.js",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server",
+    "deploy": "git add . && git commit -m 'Update' && git push origin gh-pages",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "domina",
+    "domino",
+    "game",
+    "pwa",
+    "html5",
+    "offline"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {}
+}
